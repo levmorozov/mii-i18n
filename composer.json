@@ -1,0 +1,16 @@
+{
+  "name": "levmorozov/mii-i18n",
+  "type": "library",
+  "description": "",
+  "homepage": "https://github.com/levmorozov/mii-i18n",
+  "license": "MIT",
+  "minimum-stability": "stable",
+  "require": {
+    "phpmailer/phpmailer": "~6.1.4",
+    "levmorozov/mii": ">=1.9.0",
+    "php": ">=7.4"
+  },
+  "autoload": {
+    "classmap" : ["Simple.php"]
+  }
+}
