@@ -9,7 +9,7 @@ class Simple extends Component
 {
     protected string $language;
     protected string $base_path;
-    protected array $messages;
+    protected array $messages = [];
 
     public function init(array $config = []) : void {
         foreach ($config as $key => $value) {
@@ -45,7 +45,7 @@ class Simple extends Component
 
 
     public function translate($string) {
-        if ($this->messages === null)
+        if (empty($this->messages))
             $this->load();
 
         return isset($this->messages[$string]) ? $this->messages[$string] : $string;
