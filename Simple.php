@@ -7,8 +7,8 @@ use mii\core\Exception;
 
 class Simple extends Component
 {
-    protected string $language;
-    protected string $base_path;
+    protected string $language = '';
+    protected string $base_path = '';
     protected array $messages = [];
 
     public function init(array $config = []) : void {
@@ -22,7 +22,7 @@ class Simple extends Component
             $this->base_path = \path('app') . '/messages';
         }
 
-        if ($this->language === null) {
+        if (!$this->language) {
             $this->language = \Mii::$app->language;
         }
     }
