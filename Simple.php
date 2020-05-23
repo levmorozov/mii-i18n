@@ -47,7 +47,7 @@ class Simple extends Component
 
     public function translate($string)
     {
-        if ($this->messages === null)
+        if (empty($this->messages))
             $this->load();
 
         return $this->messages[$string] ?? $string;
