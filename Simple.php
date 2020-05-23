@@ -1,6 +1,6 @@
 <?php
 
-namespace levmorozov\i18n;
+namespace mii\i18n;
 
 use mii\core\Component;
 use mii\core\Exception;
@@ -11,7 +11,8 @@ class Simple extends Component
     protected string $base_path = '';
     protected array $messages = [];
 
-    public function init(array $config = []) : void {
+    public function init(array $config = []): void
+    {
         foreach ($config as $key => $value) {
             $this->$key = $value;
         }
@@ -27,14 +28,14 @@ class Simple extends Component
         }
     }
 
-    private function load() {
-
-        if (!is_file($this->base_path . '/' . $this->language . '.php')) {
+    private function load()
+    {
+        if (!\is_file($this->base_path . '/' . $this->language . '.php')) {
 
             list($lang, $country) = explode('-', $this->language);
 
-            if (!is_file($this->base_path . '/' . $lang . '.php')) {
-                throw new Exception();
+            if (!\is_file($this->base_path . '/' . $lang . '.php')) {
+                throw new Exception("File for {$this->language} language not found");
             } else {
                 $this->messages = require($this->base_path . '/' . $lang . '.php');
             }
@@ -44,11 +45,12 @@ class Simple extends Component
     }
 
 
-    public function translate($string) {
+    public function translate($string)
+    {
         if ($this->messages === null)
             $this->load();
 
-        return isset($this->messages[$string]) ? $this->messages[$string] : $string;
+        return $this->messages[$string] ?? $string;
     }
 
 }
